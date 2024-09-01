@@ -1,0 +1,6 @@
+app-name: "すかいの部屋"
+admin-password: "alpha"
+admin: true
+admin-pageid: "12"
+site-plus: false
+port: 4999

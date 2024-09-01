@@ -1,0 +1,143 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  font-family: "Kosugi Maru", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+</style>
+ <body style="margin: 0; padding: 0;">
+
+    <!-- サイドメニュー -->
+    <div class="sidebar" style="background-color: #f8f9fa; padding: 10px; position: fixed; top: 0; bottom: 0; left: 0; width: 200px; overflow-y: auto; display: none;">
+        <h5 style="text-align: center;">メニュー</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#account">アカウント削除、作成</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#setting">設定</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="content" style="margin-left: 0; padding: 20px;">
+        <!-- ヘッダー -->
+        <nav class="navbar navbar-expand-lg" style="background-color: #4285F4; padding-left: 15px; padding-right: 15px;">
+            <a class="navbar-brand" href="#home" style="color: white;">アドミン</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border-color: white;">
+                <span class="navbar-toggler-icon" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3E%3Cpath stroke=\'rgba%28255, 255, 255, 1%29\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#acli" style="color: white;">アカウント一覧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kino" style="color: white;">機能の紹介</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wabi" style="color: white;">アップデート履歴</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div style="margin-top: 20px;">
+            <page id="home">
+            <h1>アドミンへようこそ!</h1>
+            <p>よこのパネルで設定変更、上のパネルで説明。</p>
+</page>
+<page id="account">
+<form method="post" style="width:40%; margin: 0 auto;">
+<h2>作成</h2>
+  <label for="username" class="form-label">ユーザ名を入力</label>
+  <input type="text" class="form-control" name="username" aria-describedby="usernamehelp">
+  <label for="password" class="form-label">パスワードを入力</label>
+  <input type="text" class="form-control" name="password" aria-describedby="passwordhelp">
+  <div id="passwordhelp" class="form-text">パスワードは変更不可</div>
+  <label for="position" class="form-label">パスワードを入力</label>
+<select class="form-select" name="position" aria-describedby="positionn">
+  <option selected value="0">student</option>
+  <option value="1">teacher</option>
+</select>
+  <br>
+  <input type="submit" class="btn btn-primary" value="作成" formaction="/accreate.action">
+</form>
+</page>
+<page id="acli">
+<h1>一覧</h1>
+{% for i in users %}
+<div>{{i[0]}}  <strong>{{i[1]}}</strong> {{i[2]}}</div>
+{% endfor %}
+</page>
+<page id="kino">
+<h2>一覧。</h2>
+アカウント作成、禁止ワードの作成、<br>
+機能追加モジュールのダウンロード、<br>
+チャットルームの追加。
+</page>
+<page id="wabi">
+{{v}}バージョンです。<br>
+{% if update %}
+{{db}}を引き継げばアップデートできます。<br>
+<a href="#"><button type="button" class="btn btn-primary">ダウンロードする</button></a>
+
+{% endif %}
+</page>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // メディアクエリでサイドバーの表示制御
+        function handleResize() {
+            if (window.innerWidth >= 992) {
+                document.querySelector('.sidebar').style.display = 'block';
+                document.querySelector('.content').style.marginLeft = '200px';
+            } else {
+                document.querySelector('.sidebar').style.display = 'none';
+                document.querySelector('.content').style.marginLeft = '0';
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('load', handleResize);
+    </script>
+    <style>
+        /* 初期状態ではすべてのページを非表示に */
+        page {
+            display: none;
+        }
+
+        /* ハッシュが指定された場合、そのidに一致する要素を表示 */
+        :target {
+            display: block;
+        }
+    </style>
+    <script>
+        // ページが読み込まれたときに実行
+        window.addEventListener('load', function() {
+            // 現在のハッシュを確認
+            if (!window.location.hash) {
+                // ハッシュが指定されていない場合、自動的に #home に移動
+                window.location.hash = '#home';
+            }
+        });
+    </script>
+</body>
+</html>
